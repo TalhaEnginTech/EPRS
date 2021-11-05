@@ -1,0 +1,52 @@
+<%if user_signed_in?  %>
+  <%if current_user.role== "HR" %>
+<h2>Add USER</h2>
+
+
+<%= form_with model: @user, url: new_user_path do |f| %>
+
+<div class="col-6" style="margin: 0 auto">
+  <div class="field mb-3">
+    <%= f.label :name %><br/>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  <div class="field mb-3">
+    <%= f.label :cnic %><br/>
+    <%= f.text_field :cnic, autofocus: true, class:"form-control" %>
+  </div>
+  <div class="field mb-3">
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+  </div>
+  <div class="field mb-3">
+    <%= f.label :joining_date %><br/>
+    <%= f.date_select :joindate, autofocus: true, class:"form-control" %>
+  </div>
+  <div class="field mb-3">
+    <%= f.label :role %><br/>
+    <%= f.radio_button :role, 'HR' %> HR
+    <%= f.radio_button :role, 'Manager' %> Manager
+    <%= f.radio_button :role, 'Employee' %> Employee
+  </div>
+  <div class="field mb-3">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+  </div>
+
+  <div class="actions" style="margin-bottom: 10px">
+    <%= f.submit "Add", class:"btn btn-info" %>
+  </div>
+</div>
+<% end %>
+    <%else %>
+    redirect_to :root_path, notice: "You are restricted to perform this functionality"
+    <%end %>
+<%end %>

@@ -1,0 +1,41 @@
+<%if user_signed_in?  %>
+<h2 class="heading">Employee Review Form</h2>
+
+<%#= form_for model: review_forms, url:new_review_form_path do |f| %>
+<%= form_with model: @rf, url: review_forms_url, method: :post, local: true   do |f|%>
+    <div class="col-5" style="margin: 0 auto">
+
+
+  <div class="field mb-3">
+    <% @query.each do |x|%>
+      <%= x.question %>
+  </div>
+      <div class="field mb-3">
+
+    <%= f.text_field :answer, class:"form-control" %>
+
+<%end %>
+    </div><br>
+  <div class="field mb-3">
+    <%= f.label :Remarks %>
+    <%= f.text_field :remarks,class:"form-control" %>
+  </div><br>
+  <div class="field mb-3">
+    <%= f.label :SubmittedBy %>
+    <%= f.text_field :submittedBy, autofocus: true,class:"form-control" , value: current_user.name%>
+  </div><br>
+
+
+  <div class="field mb-3">
+
+    <%= f.text_field :user_id, autofocus: true,class:"form-control", value: current_user.id, type:"hidden" %>
+  </div><br>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+    </div>
+<% end %>
+<%else%>
+<h3>Restricted</h3>
+<%end %>

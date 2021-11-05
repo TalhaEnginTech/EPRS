@@ -1,0 +1,28 @@
+<h1>Questions#show</h1>
+
+
+
+<h1>ReviewForm#index</h1>
+<p>Find me in app/views/review_form/index.html.erb</p>
+
+<table class="table table-striped table-hover">
+  <thead class="thead-dark ">
+  <tr>
+    <th>Questions</th>
+    <th>Answers</th>
+    <th>Remarks</th>
+    <th>Submitted By</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @rf.each do |q| %>
+    <tr>
+
+      <td><%= q.answer %></td>
+      <td><%= q.remarks %></td>
+      <td><%= q.submittedBy %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

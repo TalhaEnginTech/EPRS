@@ -1,0 +1,21 @@
+<%if user_signed_in? && current_user.role=="HR" %>
+<h2 class="heading">Add a new question</h2>
+
+<%= form_with(model: @query , local: true) do |f| %>
+
+<div class="col-4" style="margin: 0 auto">
+  <div class="field mb-3">
+    <%= f.label :Question %><br/>
+    <%= f.text_area :question , class:"form-control"%>
+  </div>
+
+
+  <br>
+  <div class="actions">
+    <%= f.submit "Add New", class:"btn btn-primary" %>
+  </div>
+</div>
+<%end %>
+<%else %>
+   <h3>REstricted</h3>
+<%end %>

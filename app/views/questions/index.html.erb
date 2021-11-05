@@ -1,0 +1,23 @@
+
+<h1>REVIEW FORM</h1>
+
+
+<table class="table table-striped table-hover">
+  <thead class="thead-dark ">
+  <tr>
+    <th>Questions</th>
+
+
+  </tr>
+  </thead>
+  <tbody>
+<% @query.each do |q| %>
+  <tr>
+    <td><%= q.question %></td>
+
+    <td><%= link_to "delete", q, method: :delete, data: { confirm: "Are you sure"} %></td>
+  </tr>
+<% end %>
+
+</tbody>
+</table>
