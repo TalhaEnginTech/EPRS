@@ -40,7 +40,11 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
   </div>
+  <div class="field mb-3">
+    <%= f.label :Manager %><br/>
 
+    <%= f.collection_select :users, User.where(role:"Manager"), :id, :name, prompt: true %>
+  </div>
   <div class="actions" style="margin-bottom: 10px">
     <%= f.submit "Add", class:"btn btn-info" %>
   </div>

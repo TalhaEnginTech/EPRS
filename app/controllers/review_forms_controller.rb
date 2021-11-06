@@ -3,6 +3,7 @@ class ReviewFormsController < ApplicationController
     @rf = ReviewForm.all
     #authorize @rfs
     @query = Question.all
+    @user = current_user
   end
 
   def show

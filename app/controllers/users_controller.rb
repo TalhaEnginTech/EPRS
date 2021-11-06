@@ -4,6 +4,9 @@ def index
   #authorize @users
   @users = User.all
 end
+def show
+  @user = User.find(params[:id])
+end
 
 def new
   @user = User.new
@@ -48,7 +51,7 @@ end
 private
 
 def user_params
-  params.require(:user).permit(:name, :cnic, :email, :joindate, :role, :password)
+  params.require(:user).permit(:name, :cnic, :email, :joindate, :role, :password, :manager_id, :manager)
 end
 
 end
