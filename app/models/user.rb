@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :subordinates, class_name: "User", foreign_key: "manager_id"
   belongs_to :manager, class_name: "User", optional: true
-  has_many :review_forms
+
+  has_many :review_forms, dependent: :destroy
+  validates_presence_of :name, :cnic, :email, :role, :joindate
 end
 

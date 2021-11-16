@@ -5,19 +5,19 @@
   <div class="col-6" style="margin: 0 auto">
   <div class="field mb-3">
     <%= f.label :name, class:"label1" %><br/>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control", required:true %>
   </div>
   <div class="field mb-3">
     <%= f.label :cnic, class:"label1" %><br/>
-    <%= f.text_field :cnic, autofocus: true, class: "form-control" %>
+    <%= f.text_field :cnic, autofocus: true, class: "form-control", required:true %>
   </div>
   <div class="field mb-3">
     <%= f.label :email, class:"label1" %><br/>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" , required:true%>
   </div>
   <div class="field mb-3">
     <%= f.label :joining_date, class:"label1" %><br/>
-    <%= f.date_select :joindate%>
+    <%= f.date_select :joindate, required:true%>
   </div>
   <div class="field mb-3">
     <%= f.label :role, class:"label1"%><br/>

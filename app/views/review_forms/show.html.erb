@@ -1,2 +1,39 @@
-<h1>ReviewForm#show</h1>
-<p>Find me in app/views/review_form/show.html.erb</p>
+
+
+<h1>Review Forms</h1>
+<table class="table table-striped table-hover">
+  <thead class="thead-dark ">
+  <tr>
+    <th>Answer 1</th>
+    <th>Answer 2</th>
+    <th>Answer 3</th>
+    <th>Answer 4</th>
+    <th>Answer 5</th>
+    <th>Answer 6</th>
+    <th>Answer 7</th>
+    <th>Answer 8</th>
+    <th>Answer 9</th>
+    <th>Answer 10</th>
+    <th>Submit By</th>
+    <th>Comment</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%=@rf.quality %></td>
+    <td><%= @rf.productivity %></td>
+    <td><%= @rf.job_knowledge %></td>
+    <td><%= @rf.commitment%></td>
+    <td><%= @rf.attendance %></td>
+    <td><%= @rf.creativity %></td>
+    <td><%= @rf.policy %></td>
+    <td><%= @rf.lead %></td>
+    <td><%= @rf.accomplishments %></td>
+    <td><%= @rf.areas %></td>
+    <td><%= @rf.recommendations %></td>
+
+    <td><%= @rf.submittedBy %></td>
+    <td><%= @rf.remarks %></td>
+  </tr>
+  </tbody>
+</table>
