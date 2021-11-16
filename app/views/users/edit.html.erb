@@ -1,20 +1,31 @@
 <%if user_signed_in? && current_user.role =="HR" %>
 
 <%= form_for @user, url: update_path(@user) , remote:false do |x| %>
+    <div class="col-6" style="margin: 0 auto">
+      <div class="field mb-3">
   <%= x.label :Name %>
-  <%= x.text_field :name %>
+  <%= x.text_field :name, class:"form-control" %>
+      </div>
+      <div class="field mb-3">
   <%= x.label :CNIC %>
-  <%= x.text_field :cnic %>
+  <%= x.text_field :cnic, class:"form-control" %>
+      </div>
+      <div class="field mb-3">
   <%= x.label :Email %>
-  <%= x.email_field :email %>
-  <%= x.label :JoiningDate %>
-  <%= x.date_select :joindate %>
+  <%= x.email_field :email, class:"form-control" %>
+      </div>
+
+      <div class="field mb-3">
     <%= x.label :role %><br/>
-    <%= x.radio_button :role, 'HR' %> HR
+
     <%= x.radio_button :role, 'Manager' %> Manager
     <%= x.radio_button :role, 'Employee' %> Employee
-  <%= x.submit %>
+      </div>
+  <%= x.submit  class:"btn btn-primary"%>
+
   <%end %>
+  <br>
+  </div>
   <%else %>
   <h2>Restricted</h2>
 <%end %>

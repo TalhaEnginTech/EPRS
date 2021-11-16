@@ -1,4 +1,47 @@
-<% @users.each do |user| %>
-  <%= user.name %>
 
-<% end %>
+<div class="row py-5 px-4">
+  <div class="col-md-5 mx-auto">
+    <!-- Profile widget -->
+    <div class="bg-white shadow rounded overflow-hidden">
+      <div class="px-4 pt-0 pb-4 cover">
+        <div class="media align-items-end profile-head">
+
+          <div class="media-body mb-5 text-white">
+            <h4 class="mt-0 mb-0"><%= current_user.name %></h4>
+            <p class="small mb-4"></p><br><br>
+          </div>
+        </div>
+      </div>
+      <div class="bg-light p-4 d-flex justify-content-end text-center">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item">
+            <h5 class="font-weight-bold mb-0 d-block"><%=current_user.cnic%></h5><small class="text-muted"> <i class="fas fa-id-card"></i>CNIC</small>
+          </li>
+          <li class="list-inline-item">
+            <h5 class="font-weight-bold mb-0 d-block"><%=current_user.joindate%></h5><small class="text-muted"> <i class="fas fa-calendar-day"></i>Joining Date</small>
+          </li>
+          <li class="list-inline-item">
+            <h5 class="font-weight-bold mb-0 d-block"><%=current_user.role%></h5><small class="text-muted"> <i class="fas fa-user-tag"></i>Role</small>
+          </li>
+        </ul>
+      </div>
+      <div class="px-4 py-3">
+        <h5 class="mb-0">Email</h5>
+        <div class="p-4 rounded shadow-sm bg-light">
+          <p class="font-italic mb-0"><%=current_user.email %></p>
+
+        </div>
+      </div>
+      <div class="py-4 px-4">
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <br>
+  </div>

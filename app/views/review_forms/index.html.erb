@@ -1,26 +1,90 @@
-<h1>ReviewForm#index</h1>
-<p>Find me in app/views/review_form/index.html.erb</p>
+<h2 class="heading">Previous Responses</h2>
+<%if user_signed_in? %>
 
 <table class="table table-striped table-hover">
   <thead class="thead-dark ">
   <tr>
 
-    <th>Remarks</th>
     <th>Submitted By</th>
-
+    <th>Remarks</th>
+    <th>Quality</th>
+    <th>Productivity</th>
+    <th>Job Knowledge</th>
+    <th>Commitment</th>
+    <th>Attendance</th>
+    <th>Creativity</th>
+    <th>Policy</th>
+    <th>Lead</th>
+    <th>Accomplishments</th>
+    <th>Areas to Improve</th>
+    <th>Recommendations</th>
   </tr>
   </thead>
   <tbody>
-  <% @rf.each do |q| %>
+  <%if current_user.role=="HR" %>
+  <% @rf.each  do |q| %>
+      <
     <tr>
 
-
-
-
-      <td><%= q.remarks %></td>
       <td><%= q.submittedBy %></td>
-    </tr>
+        <td><%= q.remarks %></td>
+      <td><%= link_to 'delete',q, method: :delete, data: { confirm: "Are you sure"} %></td>
+
   <% end %>
-  </tbody>
+  <% elsif current_user.role == "Employee" %>
+
+ <%@rf.each do |i| %>
+      <% if i.user_id == current_user.id %>
+        <tr>
+          <td><%= i.submittedBy %></td>
+          <td><%=i.remarks %></td>
+          <td><%= i.quality %></td>
+          <td><%= i.productivity %></td>
+          <td><%= i.job_knowledge %></td>
+          <td><%= i.commitment %></td>
+          <td><%= i.attendance %></td>
+          <td><%= i.creativity %></td>
+          <td><%= i.policy %></td>
+          <td><%= i.lead %></td>
+          <td><%= i.accomplishments %></td>
+          <td><%= i.areas %></td>
+          <td><%=i.recommendations %></td>
+        </tr>
+
+    <%end %>
+
+    <%end %>
+
+  <% elsif current_user.role == "Manager"  %>
+
+    <% form = ReviewForm.find_by_id(params[:m_id]) %>
+
+        <tr>
+          <td><%= form.submittedBy %></td>
+          <td><%= form.quality %></td>
+          <td><%= form.productivity %></td>
+          <td><%= form.job_knowledge %></td>
+          <td><%= form.commitment %></td>
+          <td><%= form.attendance %></td>
+          <td><%= form.creativity %></td>
+          <td><%= form.policy %></td>
+          <td><%= form.lead %></td>
+          <td><%= form.accomplishments %></td>
+          <td><%= form.areas %></td>
+          <td><%=form.recommendations %></td>
+        </tr>
+
+
+
+
+
+
+    <%end %>
+
+
+
+<%end %>
+</tbody>
+
 </table>
-<%= link_to 'Back',  new_review_form_path, class:"nav-link" %>
+<%= link_to 'Back', users_path, class:"nav-link" %>

@@ -4,10 +4,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  after_create :assign_roles
-  def assign_roles
-    self.add_role(:newuser) if self.role.blank?
-  end
-  has_many :review_forms
+  has_many :subordinates, class_name: "User", foreign_key: "manager_id"
+  belongs_to :manager, class_name: "User", optional: true
+
+  has_many :review_forms, dependent: :destroy
+  validates_presence_of :name, :cnic, :email, :role, :joindate
 end
 

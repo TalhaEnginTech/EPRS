@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @query = Question.all
+    # @query = Question.all
   end
 
   def new
