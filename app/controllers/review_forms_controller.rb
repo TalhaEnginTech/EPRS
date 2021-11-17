@@ -15,14 +15,15 @@ class ReviewFormsController < ApplicationController
     @ref = ReviewForm.new
     @user = current_user
     if current_user.role=="Employee"
-    @ref = ReviewForm.find_by(params[:user_id])
+      @ref = ReviewForm.find_by(params[:user_id])
     elsif current_user.role=="Manager"
-    @ref = ReviewForm.find_by(params[:manager_id])
+      @ref = ReviewForm.find_by(params[:manager_id])
 
     end
   end
 
   def create
+
     @ref = ReviewForm.new(rf_params)
 
     @user = ReviewForm.find_by(params[:id])
@@ -38,10 +39,10 @@ class ReviewFormsController < ApplicationController
         SurveyFormMailer.send_to_hr.deliver_now
       end
 
-        #else
-        #SurveyFormMailer.send_to_hr(@user).deliver_now
+      #else
+      #SurveyFormMailer.send_to_hr(@user).deliver_now
 
-      redirect_to review_forms_path
+      redirect_to root_path
     else
       render :new
     end
@@ -59,7 +60,6 @@ class ReviewFormsController < ApplicationController
 
   private
   def rf_params
-
     params.require(:review_form).permit(:remarks, :submittedBy, :user_id, :quality, :productivity, :job_knowledge, :commitment, :attendance, :creativity, :policy, :lead, :accomplishments, :areas, :recommendations, :score )
 
   end

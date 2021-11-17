@@ -87,7 +87,7 @@
       </table>
      <div class="field mb-3">
         <%= f.label :SubmittedBy %>
-        <%= f.text_field :submittedBy, autofocus: true,class:"form-control" , value: current_user.name%>
+        <%= f.text_field :submittedBy, autofocus: true,class:"form-control" , value: current_user.name, readonly:true%>
       </div><br>
 
 
