@@ -7,6 +7,6 @@ class ReviewForm < ApplicationRecord
     self.assign_attributes(score: result)
   end
 =end
-  belongs_to :user
+  belongs_to :user ,optional:true
 
 end

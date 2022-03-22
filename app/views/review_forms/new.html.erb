@@ -2,90 +2,40 @@
   <% if current_user.role == 'HR' %>
     <%= render 'review_forms/hr_form' %>
   <% else %>
-<h2 class="heading">Employee Review Form</h2>
+    <h2 class="heading">Employee Review Form</h2>
 
-<%#= form_for model: review_forms, url:new_review_form_path do |f| %>
-<%= form_with model: @ref, url: review_forms_path, method: :post, local: true   do |f|%>
-    <div class="col-5" style="margin: 0 auto">
+  <%#= form_for model: review_forms, url:new_review_form_path do |f| %>
+    <%= form_with model: @ref, url: review_forms_path, method: :post, local: true   do |f|%>
+      <div class="col-5" style="margin: 0 auto">
 
-      <div class="field mb-3">
-        <%= f.label :"Quality - The extent to which an employee's work is completed thoroughly and correctly
-        following established process & procedures Required paperwork is thorough and neat." %>
-        <%= f.number_field :quality, autofocus: true,min:1, max:5, class:"form-control", required:true %>
+        <% @form_questions.each_with_index do |question,i| %>
 
-      </div><br>
-      <div class="field mb-3">
-        <%= f.label :"Productivity / Independence / Reliability The extent to which an employee produces a significant volume of work efficiently in a specified period of time
-        Ability to work independently with little or no direction/ follow-up to complete tasks/job assignment
-" %>
-        <%= f.number_field :productivity, autofocus: true, min:1, max:5,class:"form-control", required:true %>
+          <div class="field mb-3">
+            <%= f.label question %>
+            <%= f.number_field "answer-#{i}", autofocus: true,min:1, max:5, class:"form-control", required:true %>
 
-      </div><br>
-      <div class="field mb-3">
-        <%= f.label :"Job Knowledge The extent to which an employee perform the job Employee possesses the practical and technical knowledge required of the job
-" %>
-        <%= f.number_field :job_knowledge, autofocus: true, min:1, max:5,class:"form-control", required:true %>
-      </div><br>
-      <div class="field mb-3">
-        <%= f.label :"Interpersonal Relationships / Cooperation /Commitment - The extent to which employee is willing and demonstrates the ability to cooperate, work and communicate with coworkers, supervisors, subordinates and/or outside contacts Employee accepts and responds to change in a positive manner
-         Accepts job assignments and additional duties willingly,
-          takes responsibility for own performance and job assignments" %>
-        <%= f.number_field :commitment, autofocus: true,min:1, max:5,class:"form-control", required:true %>
-      </div><br>
-      <div class="field mb-3">
-        <%= f.label :"Attendance -The extent to which an employee is punctual, observes prescribed work break/meal periods and has an acceptable overall attendance record Employee's willingness to work overtime as required
-        Employee comes in as the time prescribed by office rules" %>
-        <%= f.number_field :attendance, autofocus: true,min:1, max:5,class:"form-control", required:true %>
-      </div><br>
- <div class="field mb-3">
-   <%= f.label :"Initiative/ Creativity - The extent to which an employee seeks out new assignments, proposes improved work methods, suggests ideas to eliminate waste,
-    finds new and better ways of doing things" %>
-   <%= f.number_field :creativity, autofocus: true,min:1, max:5,class:"form-control", required:true %>
- </div>
-      <div class="field mb-3">
-        <%= f.label :"Adherence to Policy - The extent to which the employees follows company policies,
-         procedures and work conduct rules Complies with and follows all safety rules and regulations, wears required safety equipment" %>
-        <%= f.number_field :policy, autofocus: true,min:1, max:5,class:"form-control", required:true %>
-      </div>
-      <div class="field mb-3">
-        <%= f.label :"Lead (if applicable)- The extent to which the employee demonstrates proper judgment and decision-making skills when directing others Directs work flow in assigned areas effectively to meet production / area goals" %>
-        <%= f.number_field :lead, autofocus: true,min:1, max:5,class:"form-control", required:true %>
-      </div>
-      <div class="field mb-3">
-        <%= f.label :"Accomplishments or new abilities demonstrated since last review?" %>
-        <%= f.number_field :accomplishments, autofocus: true,min:1, max:5,class:"form-control", required:true %>
-      </div>
-      <div class="field mb-3">
-        <%= f.label :"Specific areas of needed improvement and goals set for next review:" %>
-        <%= f.number_field :areas, autofocus: true,min:1, max:5,class:"form-control", required:true %>
-      </div>
-      <div class="field mb-3">
-        <%= f.label :"Recommendations for professional development " %>
-        <%= f.number_field :recommendations, autofocus: true,min:1, max:5,class:"form-control", required:true %>
-      </div>
-      <div class="field mb-3">
-        <%= f.label :SubmittedBy %>
-        <%= f.text_field :submittedBy, value:current_user.name, autofocus: true,min:1, max:5,class:"form-control", required:true%>
-      </div>
+          </div><br>
 
-
-      <% if current_user.role == "Employee" %>
-        <div class="field form-group">
-          <%= f.text_field :user_id, value: current_user.id, class:"form-control", type: "hidden"%>
+        <% end %>
+          <%= f.text_field :submittedBy, value:current_user.name, autofocus: true,min:1, max:5,class:"form-control", required:true, hidden:true%>
         </div>
 
-      <%else %>
-        <div class="field form-group">
-          <%= f.text_field :user_id, value: params[:user_id], class:"form-control", type: "hidden"%>
+
+        <% if current_user.role == "Employee" %>
+          <div class="field form-group">
+            <%= f.text_field :user_id, value: current_user.id, class:"form-control", type: "hidden"%>
+          </div>
+
+        <%else %>
+          <div class="field form-group">
+            <%= f.text_field :user_id, value: params[:user_id], class:"form-control"%>
+          </div>
+        <%end %>
+        <div class="actions">
+          <%= f.submit "Submit", class: "btn btn-primary" %>
         </div>
-      <%end %>
-      <div class="actions">
-        <%= f.submit "Submit", class: "btn btn-primary" %>
+
       </div>
-
-    </div>
-<% end %>
-
-
-<%end %>
+    <% end %>
+  <%end %>
 <% end %>

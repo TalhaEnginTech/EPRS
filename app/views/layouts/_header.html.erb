@@ -9,11 +9,16 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
         <%if user_signed_in? %>
+          <%if current_user.role=="HR" %>
+            <li class="nav-item mx-0 mx-lg-1"><%=link_to 'Add Questions', new_question_path, class:"nav-link py-3 px-0 px-lg-3 rounded"%></li>
+            <li class="nav-item mx-0 mx-lg-1"><%=link_to 'Show Questions', questions_path, class:"nav-link py-3 px-0 px-lg-3 rounded"%></li>
+            <li class="nav-item mx-0 mx-lg-1"><%=link_to 'View Responses', review_forms_path, class:"nav-link py-3 px-0 px-lg-3 rounded"%></li>
+      <%end %>
           <li class="nav-item mx-0 mx-lg-1"><%=link_to 'Edit Profile', edit_user_registration_path, class:"nav-link py-3 px-0 px-lg-3 rounded"%></li>
 
-          <%if current_user.role=="Employee" %>
-          <li class="nav-item mx-0 mx-lg-1"><%=link_to 'View Responses', review_forms_path, class:"nav-link py-3 px-0 px-lg-3 rounded"%></li>
-<%end %>
+          <%#if current_user.role=="Employee" %>
+
+<%#end %>
           <li class="nav-item mx-0 mx-lg-1"><%=link_to 'Sign out', destroy_user_session_path,class:"nav-link py-3 px-0 px-lg-3 rounded" , :method => :delete %></li>
           <%else %>
           <li class="nav-item mx-0 mx-lg-1"><%= link_to 'Sign Up ',new_user_registration_path, class:"nav-link py-3 px-0 px-lg-3 rounded" %></li>
